@@ -53,8 +53,26 @@ public class SendMsgStr2 extends MessageSender{
 	  @DataProvider(name="sendNullType2")
 	  public Object[][] sendNullType2(){
 		return new Object[][]{
-				{"",3,"13520021687"}
+				  {"",3,"13520021687"},
+				  {null,3,"13520021687"}
+			
+				  
 		};
 		  
-	  }   
+	  }  
+	  /**
+	   * 测试消息正常发送 String msg +key  一条数据
+	   * ***/
+	  @Test(dataProvider="sendStringKey1")
+	  public void sendStringKey2(String msg,long pid,String key ){	
+		  iMessageSender.send(msg, pid, key+pid);  
+		 
+	  }
+	  @DataProvider(name="sendStringKey1")
+	  public Object[][]sendStringKey1(){
+		  return new Object[][]{
+				  {"testtherestring-str02",-2,"135200216873222"} //正常测试key ,String 的  msg; 
+				  
+		  };  
+	  }
 }

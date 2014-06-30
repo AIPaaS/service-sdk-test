@@ -53,8 +53,24 @@ public class SendMsgByte2  extends MessageSender{
 	  @DataProvider(name="sendNullType3")
 	  public Object[][] sendNullType3(){
 		  return new Object[][]{  
-				 {"".getBytes(),2,"13520021687"}  
+				   {"".getBytes(),2,"13520021687"} ,
+				   {null,2,"13520021687"} 
+				 
+				    
 				 
 		  };    
 	  }
+	  /**
+	   * 测试传入一条数据
+	   * **/
+	  @Test(dataProvider="sendByte2")  
+	  public void sendByte2(byte[] bytes,long arg1,String key){
+	  iMessageSender.send(bytes, arg1,key); //id+i
+		 }
+	  @DataProvider(name="sendByte2")    
+	  public Object[][]sendByte2(){
+		  return  new Object[][]{
+				  {"testonestring-str02".getBytes(),-6,"13520021708"}  //正常测试Byte
+		  };
+	  }   
 }

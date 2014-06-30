@@ -26,7 +26,7 @@ public class SendMsgByte1 extends MessageSender  {
 	  public void sendByte(byte[] bytes,long arg1){
 		  int i =0;
 		  while(i<20){
-		  iMessageSender.send(bytes, arg1); //id+i
+		  iMessageSender.send(bytes, arg1); 
 		  i++;
 		  };
 		
@@ -52,7 +52,8 @@ public class SendMsgByte1 extends MessageSender  {
 	  @DataProvider(name="sendNullType2")
 	  public Object[][] sendNullType2(){
 		  return new Object[][]{
-				  {"".getBytes(),3}
+				  {"".getBytes(),3},
+				  {null,3}
 		  };
 	  }
 	  /**
@@ -60,7 +61,7 @@ public class SendMsgByte1 extends MessageSender  {
 	   * **/
 	  @Test(dataProvider="sendByte2")  
 	  public void sendByte2(byte[] bytes,long arg1){
-	  iMessageSender.send(bytes, arg1); //id+i
+	  iMessageSender.send(bytes, arg1); 
 		 }
 	  @DataProvider(name="sendByte2")    
 	  public Object[][]sendByte2(){
