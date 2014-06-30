@@ -53,7 +53,7 @@ public class SendMsgByte2  extends MessageSender{
 	  @DataProvider(name="sendNullType3")
 	  public Object[][] sendNullType3(){
 		  return new Object[][]{  
-				 {"",2,"13520021687"}  
+				 {"".getBytes(),2,"13520021687"}  
 				 
 		  };    
 	  }

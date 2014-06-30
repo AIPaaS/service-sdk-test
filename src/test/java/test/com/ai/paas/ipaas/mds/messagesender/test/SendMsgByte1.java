@@ -38,9 +38,9 @@ public class SendMsgByte1 extends MessageSender  {
 		  };
 	  }  
 	  /***
-	   * 测试byte[]为空的情况     
+	   * 测试byte[]为空的情况     ---- 正确发送
 	   * **/
-	  @Test(dataProvider="sendNullType1")
+	  @Test(dataProvider="sendNullType2")
 	  public void sendNullTypeTest1(byte[] msg,long pid){
 		  try{
 		  iMessageSender.send(msg, pid);
@@ -49,10 +49,23 @@ public class SendMsgByte1 extends MessageSender  {
 			  Assert.assertEquals("The message is null!", e.getMessage()); 
 		  }
 	  }  
-	  @DataProvider(name="sendNullType1")
-	  public Object[][] sendNullType1(){
+	  @DataProvider(name="sendNullType2")
+	  public Object[][] sendNullType2(){
 		  return new Object[][]{
-				  {"",3}
+				  {"".getBytes(),3}
 		  };
 	  }
+	  /**
+	   * 测试传入一条数据
+	   * **/
+	  @Test(dataProvider="sendByte2")  
+	  public void sendByte2(byte[] bytes,long arg1){
+	  iMessageSender.send(bytes, arg1); //id+i
+		 }
+	  @DataProvider(name="sendByte2")    
+	  public Object[][]sendByte2(){
+		  return  new Object[][]{
+				  {"testonestring-str02".getBytes(),-6}  //正常测试Byte
+		  };
+	  }  
 }
