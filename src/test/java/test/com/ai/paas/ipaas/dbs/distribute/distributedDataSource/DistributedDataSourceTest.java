@@ -51,7 +51,7 @@ public class DistributedDataSourceTest {
 	
 	@Test(expected = Exception.class)
 	public void setupPwdServIdNull() throws Exception {
-		ds = new DistributedDataSource(USER_NAME,null,null,URL);;
+		ds = new DistributedDataSource(USER_NAME,null,null,URL);
 	}
 	
 	@Test(expected = Exception.class)
