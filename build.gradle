@@ -91,6 +91,7 @@ repositories {
 sourceSets {
     main {
         java { srcDirs = ['src/main/java']}
+		java { srcDirs = ['src/test/java']}
          resources {
                srcDirs = ['src/main/resoruces']
          }
@@ -104,7 +105,7 @@ sourceSets {
 }
 
 ext {
-	moduleName="ipaas-mcs";
+	moduleName="ipaas-sdk-test";
 	moduleVersion="0.1-SNAPSHOT"
 	publishUserName = "devadm"
 	publishUserPassword = "Devadm@1212"
@@ -163,32 +164,4 @@ task testJar(type:Jar){
 	}
 }
 
-publish.dependsOn build 
-
-
-publishing {
-    publications {
-       publishing.publications.create("${moduleName}", MavenPublication) {
-            groupId group
-            artifactId moduleName
-            version moduleVersion
-            artifact  jar
-            pom.withXml {
-	            asNode().children().last() + {
-	                delegate.dependencies {
-	                }
-	            }
-	        }
-        }
-    }
-    repositories {
-        maven {
-            url  publishURL
-            credentials {
-                username = publishUserName
-                password = publishUserPassword
-            }
-        }
-    }
-}
 
