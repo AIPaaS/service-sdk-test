@@ -20,7 +20,7 @@ iMessageSender.send(byte0,long1);
 }
 
 /*** null测试*/
-@Test(expected = com.ai.paas.ipaas.mds.MessageClientException.class)
+@Test(expected = IllegalArgumentException.class)
 public void sendFirstNull()  {
 byte[] byte0 = null;
 long long1 = 10000000l;
@@ -28,7 +28,7 @@ iMessageSender.send(byte0,long1);
 }
 
 /*** null测试*/
-@Test(expected = com.ai.paas.ipaas.mds.MessageClientException.class)
+@Test(expected = IllegalArgumentException.class)
 public void sendSecondNull()  {
 byte[] byte0 = "thenormaltest-byte32100".getBytes();
 long long1 = 0l;
@@ -36,7 +36,7 @@ iMessageSender.send(byte0,long1);
 }
 
 /*** 空对象*/
-@Test(expected = com.ai.paas.ipaas.mds.MessageClientException.class)
+@Test(expected = IllegalArgumentException.class)
 public void sendFirstBlank()  {
 byte[] byte0 = new byte[0];
 long long1 = 10000000l;
@@ -44,7 +44,7 @@ iMessageSender.send(byte0,long1);
 }
 
 /*** 空对象*/
-@Test(expected = com.ai.paas.ipaas.mds.MessageClientException.class)
+@Test(expected = IllegalArgumentException.class)
 public void sendSecondBlank()  {
 byte[] byte0 = "thenormaltest-byte43268".getBytes();
 long long1 = 0l;

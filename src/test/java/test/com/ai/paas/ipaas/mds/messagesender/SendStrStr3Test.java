@@ -21,7 +21,7 @@ iMessageSender.send(str0,long1,str2);
 }
 
 /*** null测试*/
-@Test(expected = com.ai.paas.ipaas.mds.MessageClientException.class)
+@Test(expected = IllegalArgumentException.class)
 public void sendFirstNull()  {
 String str0 = null;
 long long1 = 10000000l;
@@ -30,7 +30,7 @@ iMessageSender.send(str0,long1,str2);
 }
 
 /*** null测试*/
-@Test(expected = com.ai.paas.ipaas.mds.MessageClientException.class)
+@Test(expected = IllegalArgumentException.class)
 public void sendSecondNull()  {
 String str0 = "thenormaltest-str23200";
 long long1 = 0l;
@@ -39,7 +39,7 @@ iMessageSender.send(str0,long1,str2);
 }
 
 /*** null测试*/
-@Test(expected = com.ai.paas.ipaas.mds.MessageClientException.class)
+@Test(expected = IllegalArgumentException.class)
 public void sendThirdNull()  {
 String str0 = "thenormaltest-str25664";
 long long1 = 10000000l;
@@ -48,7 +48,7 @@ iMessageSender.send(str0,long1,str2);
 }
 
 /*** 空对象*/
-@Test(expected = com.ai.paas.ipaas.mds.MessageClientException.class)
+@Test(expected = IllegalArgumentException.class)
 public void sendFirstBlank()  {
 String str0 = "";
 long long1 = 10000000l;
@@ -57,7 +57,7 @@ iMessageSender.send(str0,long1,str2);
 }
 
 /*** 空对象*/
-@Test(expected = com.ai.paas.ipaas.mds.MessageClientException.class)
+@Test(expected = IllegalArgumentException.class)
 public void sendSecondBlank()  {
 String str0 = "thenormaltest-str40264";
 long long1 = 0l;
@@ -66,7 +66,7 @@ iMessageSender.send(str0,long1,str2);
 }
 
 /*** 空对象*/
-@Test(expected = com.ai.paas.ipaas.mds.MessageClientException.class)
+@Test(expected = IllegalArgumentException.class)
 public void sendThirdBlank()  {
 String str0 = "thenormaltest-str88702";
 long long1 = 10000000l;

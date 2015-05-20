@@ -11,9 +11,9 @@ public class MessageSender {
 
 	public IMessageSender getClient() throws Exception {
 		ad = new AuthDescriptor(AUTH_ADDR, "393170232@qq.com", "123456",
-				"MDS001");
+				"MDS002");
 		try {
-			iMessageSender = MsgSenderFactory.getClient(ad, "");
+			iMessageSender = MsgSenderFactory.getClient(ad, "B9178FB878834E7BA8CD02FB981C7F4D_MDS002_553246307");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
