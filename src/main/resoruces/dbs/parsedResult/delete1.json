@@ -1,0 +1,19 @@
+{
+  "tables": [
+    {
+      "tableName": "t_able0",
+      "alias": "t"
+    }
+  ],
+  "columns": [
+    {
+      "columnName": "t.id",
+      "value": "0",
+      "operator": "="
+    }
+  ],
+  "funcTypes": [],
+  "groupElements": [],
+  "havingSql": false,
+  "groupBySql": false
+}

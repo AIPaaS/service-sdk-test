@@ -1,0 +1,1 @@
+ ALTER TABLE cust ADD COLUMN remark VARCHAR(45) NULL AFTER cert_code

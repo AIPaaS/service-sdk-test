@@ -1,0 +1,1 @@
+update aip_partner_account t set t.status = ? where t.partner_account_id = ? and t.acct_id = ?

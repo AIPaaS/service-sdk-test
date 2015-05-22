@@ -1,0 +1,1 @@
+insert into cust(aa,bb,cc) values('1',2,3)

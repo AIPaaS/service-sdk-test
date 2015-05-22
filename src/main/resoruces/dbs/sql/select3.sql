@@ -1,0 +1,1 @@
+select b.name, CouNt(*), min(b.cust_id) from cust b group by b.name,a.id having (count(*)>1 and count(*)<=3) or count(*)>6

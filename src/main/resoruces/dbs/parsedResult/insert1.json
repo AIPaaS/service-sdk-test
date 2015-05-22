@@ -1,0 +1,28 @@
+{
+  "tables": [
+    {
+      "tableName": "cust"
+    }
+  ],
+  "columns": [
+    {
+      "columnName": "aa",
+      "value": "'1'",
+      "operator": "="
+    },
+    {
+      "columnName": "bb",
+      "value": "2",
+      "operator": "="
+    },
+    {
+      "columnName": "cc",
+      "value": "3",
+      "operator": "="
+    }
+  ],
+  "funcTypes": [],
+  "groupElements": [],
+  "havingSql": false,
+  "groupBySql": false
+}

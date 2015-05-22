@@ -1,0 +1,12 @@
+{
+  "tables": [
+    {
+      "tableName": "big_cust"
+    }
+  ],
+  "columns": [],
+  "funcTypes": [],
+  "groupElements": [],
+  "havingSql": false,
+  "groupBySql": false
+}

@@ -1,0 +1,30 @@
+{
+  "tables": [
+    {
+      "tableName": "table1"
+    },
+    {
+      "tableName": "table2"
+    }
+  ],
+  "columns": [
+    {
+      "columnName": "col1"
+    },
+    {
+      "columnName": "col2"
+    },
+    {
+      "columnName": "col3"
+    },
+    {
+      "columnName": "col4",
+      "value": "4",
+      "operator": "="
+    }
+  ],
+  "funcTypes": [],
+  "groupElements": [],
+  "havingSql": false,
+  "groupBySql": false
+}

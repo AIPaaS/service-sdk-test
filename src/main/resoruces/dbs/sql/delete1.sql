@@ -1,0 +1,1 @@
+delete from t_able0 t where t.id = 0

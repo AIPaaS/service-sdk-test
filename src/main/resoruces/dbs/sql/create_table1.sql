@@ -1,0 +1,1 @@
+ CREATE TABLE cust (cust_id int(11) NOT NULL,name varchar(45)  NULL DEFAULT 'x',cert_type varchar(45)  NULL DEFAULT 's',cert_code varchar(45) NULL DEFAULT 'dd',PRIMARY KEY (cust_id)) ENGINE=InnoDB DEFAULT CHARACTER SET=utf8

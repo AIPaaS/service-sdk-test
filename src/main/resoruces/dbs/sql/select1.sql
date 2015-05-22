@@ -1,0 +1,1 @@
+select a.dev_id from cust a where a.cust_id = 1 and a.dev='2' and a.ss in (1,2)

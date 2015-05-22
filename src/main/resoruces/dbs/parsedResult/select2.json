@@ -1,0 +1,23 @@
+{
+  "tables": [
+    {
+      "tableName": "transaction_message_0008"
+    }
+  ],
+  "columns": [
+    {
+      "columnName": "tx_status",
+      "value": "70",
+      "operator": "="
+    },
+    {
+      "columnName": "status_time",
+      "value": "date_sub(sysdate(),interval60second)",
+      "operator": "<"
+    }
+  ],
+  "funcTypes": [],
+  "groupElements": [],
+  "havingSql": false,
+  "groupBySql": false
+}

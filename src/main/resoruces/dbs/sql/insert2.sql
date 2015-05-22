@@ -1,0 +1,1 @@
+insert into table1(col1,col2,col3) select * from table2 where col4=4

@@ -1,0 +1,24 @@
+{
+  "tables": [
+    {
+      "tableName": "aip_partner_account",
+      "alias": "t"
+    }
+  ],
+  "columns": [
+    {
+      "columnName": "t.partner_account_id",
+      "value": "question_mark_2",
+      "operator": "="
+    },
+    {
+      "columnName": "t.acct_id",
+      "value": "question_mark_3",
+      "operator": "="
+    }
+  ],
+  "funcTypes": [],
+  "groupElements": [],
+  "havingSql": false,
+  "groupBySql": false
+}

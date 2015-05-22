@@ -1,0 +1,1 @@
+select tx_id, tx_topic, tx_status, tx_content, start_time,finish_time, content_class, subscriber_amount, subscribers, succeed_amount, succeed_subscribers,       failed_subscribers,send_times,status_time      from transaction_message_0008 where tx_status=70 and status_time <      date_sub(sysdate(),interval 60 second) 

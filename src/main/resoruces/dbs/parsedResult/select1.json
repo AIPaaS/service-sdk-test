@@ -1,0 +1,29 @@
+{
+  "tables": [
+    {
+      "tableName": "cust",
+      "alias": "a"
+    }
+  ],
+  "columns": [
+    {
+      "columnName": "a.cust_id",
+      "value": "1",
+      "operator": "="
+    },
+    {
+      "columnName": "a.dev",
+      "value": "'2'",
+      "operator": "="
+    },
+    {
+      "columnName": "a.ss",
+      "value": "1,2",
+      "operator": "in"
+    }
+  ],
+  "funcTypes": [],
+  "groupElements": [],
+  "havingSql": false,
+  "groupBySql": false
+}

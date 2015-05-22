@@ -1,0 +1,1 @@
+ALTER TABLE cust change contact_num phone VARCHAR(45)

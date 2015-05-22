@@ -1,0 +1,19 @@
+{
+  "tables": [
+    {
+      "tableName": "cust",
+      "alias": "b"
+    }
+  ],
+  "columns": [],
+  "funcTypes": [
+    "CouNt",
+    "min"
+  ],
+  "groupElements": [
+    "b.name",
+    "a.id"
+  ],
+  "havingSql": true,
+  "groupBySql": true
+}
