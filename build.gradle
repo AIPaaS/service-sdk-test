@@ -122,6 +122,7 @@ dependencies{
 	compile 'com.ai:ipaas-dss:0.1-SNAPSHOT'
 	compile 'com.ai:ipaas-mds:0.1-SNAPSHOT'
 	compile 'com.ai:ipaas-txs:0.1-SNAPSHOT'
+	compile 'com.ai:ipaas-dbs:0.1-SNAPSHOT'
 	
 	testCompile 'junit:junit:4.12'
 	testCompile	 ('org.apache.jmeter:ApacheJMeter_junit:2.13'){
