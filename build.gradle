@@ -115,14 +115,8 @@ ext {
 group = 'com.ai'
 
 dependencies{
-	compile 'com.ai:ipaas-common:0.1-SNAPSHOT'
-	compile 'com.ai:ipaas-uac:0.1-SNAPSHOT'
-	compile 'com.ai:ipaas-ccs:0.1-SNAPSHOT'
-	compile 'com.ai:ipaas-mcs:0.1-SNAPSHOT'
-	compile 'com.ai:ipaas-dss:0.1-SNAPSHOT'
-	compile 'com.ai:ipaas-mds:0.1-SNAPSHOT'
-	compile 'com.ai:ipaas-txs:0.1-SNAPSHOT'
-	compile 'com.ai:ipaas-dbs:0.1-SNAPSHOT'
+	compile 'com.ai:ipaas-sdk:0.1'
+
 	
 	testCompile 'junit:junit:4.12'
 	testCompile	 ('org.apache.jmeter:ApacheJMeter_junit:2.13'){
@@ -135,6 +129,8 @@ dependencies{
 jar {
     baseName moduleName
     version moduleVersion
+	exclude "dbs/**"
+	exclude "config/**"
 	manifest {
         attributes 'packageName': moduleName, 'Built-By': builtBy,'create-date': new Date().format('yyyy-MM-dd HH:mm:ss')
     }

@@ -1,14 +1,24 @@
 package test.com.ai.paas.ipaas.mcs.cacheclient;
 import test.com.ai.paas.ipaas.mcs.cacheclient.base.CacheClient;
+
+import com.ai.paas.ipaas.mcs.CacheFactory;
 import com.ai.paas.ipaas.mcs.interfaces.ICacheClient;
+import com.ai.paas.ipaas.uac.vo.AuthDescriptor;
+
 import org.junit.Before;
 import org.junit.Test;
 public class SetStrStr2Test extends CacheClient{
-private ICacheClient iCacheClient  = null;
-
-@Before
-public void setUp() throws Exception {
-iCacheClient = super.getClient();
+private static ICacheClient iCacheClient  = null;
+//
+//@Before
+//public void setUp() throws Exception {
+static{
+try {
+	iCacheClient = CacheFactory.getClient(new AuthDescriptor("http://10.1.228.198:14821/iPaas-Auth/service/check", "393170232@qq.com", "123456",
+			"MCS001"));
+} catch (Exception e) {
+	e.printStackTrace();
+}
 }
 
 /*** 正常情况测试*/
