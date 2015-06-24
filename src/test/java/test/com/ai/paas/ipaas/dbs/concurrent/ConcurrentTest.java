@@ -76,7 +76,6 @@ public class ConcurrentTest {
 		String sql = "desc cust2";
 
 		PreparedStatement ps = null;
-
 		try {
 			ps = conn.prepareStatement(sql);
 			ResultSet rs = ps.executeQuery();
