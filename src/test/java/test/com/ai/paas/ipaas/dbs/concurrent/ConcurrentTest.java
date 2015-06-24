@@ -81,13 +81,13 @@ public class ConcurrentTest {
 			ps = conn.prepareStatement(sql);
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
-				// int size = rs.getMetaData().getColumnCount();
-				// for(int i=1; i<=size; i++) {
-				// //System.out.println(rs.getMetaData().getColumnName(i) + ":"
-				// + rs.getObject(i));
-				// }
+				 int size = rs.getMetaData().getColumnCount();
+				 for(int i=1; i<=size; i++) {
+				 System.out.println(rs.getMetaData().getColumnName(i) + ":"
+				 + rs.getObject(i));
+				 }
 			}
-			// ps.execute();
+			ps.execute();
 		} catch (Exception e) {
 
 			e.printStackTrace();
