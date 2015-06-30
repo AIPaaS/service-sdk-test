@@ -123,6 +123,19 @@ dependencies{
 		 exclude group: 'commons-math3', module: 'commons-math3'
 		 exclude group: 'commons-pool2', module: 'commons-pool2'
 	}
+	testCompile 'testNG:testng:1.0'	
+	testCompile 'testNG:jcommander:1.0'
+	testCompile 'testNG:bsh:1.0'
+	testCompile 'testNG:snakeyaml:1.0'
+	
+	testCompile 'guice:guice:3.0'
+	testCompile 'velocity:velocity:1.4'
+	testCompile 'poi-examples:poi-examples:3.11-20141221'
+	testCompile 'poi-excelant:poi-excelant:3.11-20141221'
+	testCompile 'reprotng:reportng:1.0'
+	
+	
+	
 }
 
 
