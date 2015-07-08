@@ -50,7 +50,7 @@ public class ConcurrentTest {
 					for (int j = 0; (j = ind.getAndIncrement()) < times;) {
 						final String key = "/"+k+"----"+j;
 						try {
-							configClient.add(key,"test value");
+							configClient.get(key);
 						} catch (ConfigException e) {
 							e.printStackTrace();
 						}
