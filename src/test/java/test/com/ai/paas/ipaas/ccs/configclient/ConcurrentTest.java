@@ -14,6 +14,7 @@ public class ConcurrentTest {
 	
 	private static int thread_num;
 	private static int times;
+	private static String type;//add ，delete，modify，get
 	private static final String URL = "http://10.1.228.198:14821/iPaas-Auth/service/check";
 	private static final String USER_NAME = "371308601@qq.com";
 	private static final String PASSWORD = "123456";
@@ -33,14 +34,15 @@ public class ConcurrentTest {
 	public static void main(String[] args) throws Exception {
 		thread_num = Integer.parseInt(args[0]);
 		times = Integer.parseInt(args[1]);
+		type = args[2];
 		//List<Thread> threadPool = new ArrayList<Thread>();
 		long t = System.currentTimeMillis();
-		withPool(thread_num,times);
+		withPool(thread_num,times,type);
 		long elapsed = System.currentTimeMillis() - t;
 		System.out.println(elapsed+"---------"+((1000 * times) / elapsed) + " ops");
 	}
 	
-	private static void withPool(int thread_num,final int times) throws Exception {
+	private static void withPool(int thread_num,final int times,final String type) throws Exception {
 		List<Thread> tds = new ArrayList<Thread>();
 		for (int i = 0; i < thread_num; i++) {
 			final int k = i;
@@ -50,7 +52,13 @@ public class ConcurrentTest {
 					for (int j = 0; (j = ind.getAndIncrement()) < times;) {
 						final String key = "/"+k+"----"+j;
 						try {
-							configClient.get(key);
+							switch(type){
+								case "add" : configClient.add(key,"");break;
+								case "delete" : configClient.remove(key);;break;
+								case "modify" : configClient.modify(key,"123");break;
+								case "get" : configClient.get(key);break;
+								default : System.out.println("error");
+							}
 						} catch (ConfigException e) {
 							e.printStackTrace();
 						}
