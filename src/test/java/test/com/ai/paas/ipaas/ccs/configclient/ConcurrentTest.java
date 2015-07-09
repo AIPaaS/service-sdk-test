@@ -49,6 +49,12 @@ public class ConcurrentTest {
 			final AtomicInteger ind = new AtomicInteger();
 			Thread hj = new Thread(new Runnable() {
 				public void run() {
+					IConfigClient configClient= null;
+					try {
+						configClient = ConfigFactory.getConfigClient(ad);
+					} catch (Exception e1) {
+						e1.printStackTrace();
+					}
 					for (int j = 0; (j = ind.getAndIncrement()) < times;) {
 						final String key = "/"+k+"----"+j;
 						try {
