@@ -21,13 +21,13 @@ public class ConcurrentTest
   public static void main(String[] args)
     throws Exception
   {
-    String userName = "zh_ka@163.com";
+    String userName = "xingyx@asiainfo.com";
 
     String password = "123456";
 
-    String serviceId = "DBS001";
+    String serviceId = "DBS017";
 
-    String authAddr = "http://223.202.31.215:14821/iPaas-Auth/service/check";
+    String authAddr = "http://10.1.228.198:14821/iPaas-Auth/service/check";
 
     final DistributedDataSource ds = new DistributedDataSource(userName, password, serviceId, authAddr);
 
@@ -105,7 +105,7 @@ public class ConcurrentTest
     case "delete":
       testDeleteCase(ds, n, total);
       break;
-    case "basicDbcpInsert":
+    case "basicInsert":
       basicDbcpInsert(dataSource, total, n);
       break;
     case "basicSelect":
@@ -242,9 +242,9 @@ public class ConcurrentTest
 
   public static DataSource setupDataSource() { BasicDataSource dataSource = new BasicDataSource();
     dataSource.setDriverClassName("com.mysql.jdbc.Driver");
-    dataSource.setUrl("jdbc:mysql://10.1.228.202:31306/devrdb12");
-    dataSource.setUsername("devrdbusr12");
-    dataSource.setPassword("devrdbusr12");
+    dataSource.setUrl("jdbc:mysql://10.125.3.250:39311/pocrdb11");
+    dataSource.setUsername("pocrdbusr11");
+    dataSource.setPassword("poc@11!");
     dataSource.setInitialSize(200);
     dataSource.setMaxActive(500);
     dataSource.setMaxIdle(4);
