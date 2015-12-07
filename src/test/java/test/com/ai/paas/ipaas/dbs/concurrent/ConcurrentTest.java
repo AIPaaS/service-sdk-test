@@ -11,9 +11,10 @@ import java.util.concurrent.atomic.AtomicLong;
 
 import javax.sql.DataSource;
 
-import org.apache.commons.dbcp.BasicDataSource;
+//import org.apache.commons.dbcp.BasicDataSource;
 
 import com.ai.paas.ipaas.dbs.distribute.DistributedDataSource;
+import com.ai.paas.ipaas.txs.dtm.TransactionContext;
 import com.ai.paas.ipaas.uac.vo.AuthDescriptor;
 
 public class ConcurrentTest
@@ -37,17 +38,22 @@ public class ConcurrentTest
     auth.setServiceId(serviceId);
     auth.setUserName(userName);
 
-    Integer thread_num = Integer.valueOf(Integer.parseInt(args[0]));
-    final Integer repeat_num = Integer.valueOf(Integer.parseInt(args[1]));
-    final String operator = args[2];
+    final Integer thread_num = 100;
+    final Integer repeat_num = 10000;
+    final String operator = "select";
+//    Integer thread_num = Integer.valueOf(Integer.parseInt(args[0]));
+//    final Integer repeat_num = Integer.valueOf(Integer.parseInt(args[1]));
+//    final String operator = args[2];
     System.out.println(thread_num);
     System.out.println(repeat_num);
 
-    final String database = args[3];
+    final String database = "";
+//    final String database = args[3];
 
-    final DataSource dataSource = setupDataSource();
+    final DataSource dataSource = null;
+//    final DataSource dataSource = setupDataSource();
     final AtomicLong total = new AtomicLong();
-    runTestCase(ds, 1000000, operator, database, dataSource, total);
+//    runTestCase(ds, 1000000, operator, database, dataSource, total);
     List<Thread> threadPool = new ArrayList<>();
 
     for (int index = 0; index < thread_num.intValue(); index++) {
@@ -75,17 +81,17 @@ public class ConcurrentTest
       testThread.start();
     }
 
-    while (true)
-    {
-      Thread.sleep(10000L);
-      int num = thread_num.intValue() * (repeat_num.intValue() - 10);
-
-      System.out.println("num: " + num);
-      long totalTime = total.longValue();
-      System.out.println("totalTime :" + totalTime);
-      long average = totalTime / num;
-      System.out.println("the average time is " + average + " ms");
-    }
+//    while (true)
+//    {
+//      Thread.sleep(10000L);
+//      int num = thread_num.intValue() * (repeat_num.intValue() - 10);
+//
+//      System.out.println("num: " + num);
+//      long totalTime = total.longValue();
+//      System.out.println("totalTime :" + totalTime);
+//      long average = totalTime / num;
+//      System.out.println("the average time is " + average + " ms");
+//    }
   }
 
   public static void runTestCase(DistributedDataSource ds, int n, String operator, String database, DataSource dataSource, AtomicLong total)
@@ -240,18 +246,18 @@ public class ConcurrentTest
     }
   }
 
-  public static DataSource setupDataSource() { BasicDataSource dataSource = new BasicDataSource();
-    dataSource.setDriverClassName("com.mysql.jdbc.Driver");
-    dataSource.setUrl("jdbc:mysql://10.125.3.250:39311/pocrdb11");
-    dataSource.setUsername("pocrdbusr11");
-    dataSource.setPassword("poc@11!");
-    dataSource.setInitialSize(200);
-    dataSource.setMaxActive(500);
-    dataSource.setMaxIdle(4);
-    dataSource.setMaxWait(10000L);
-    dataSource.setTestWhileIdle(true);
-    return dataSource;
-  }
+//  public static DataSource setupDataSource() { BasicDataSource dataSource = new BasicDataSource();
+//    dataSource.setDriverClassName("com.mysql.jdbc.Driver");
+//    dataSource.setUrl("jdbc:mysql://10.125.3.250:39311/pocrdb11");
+//    dataSource.setUsername("pocrdbusr11");
+//    dataSource.setPassword("poc@11!");
+//    dataSource.setInitialSize(200);
+//    dataSource.setMaxActive(500);
+//    dataSource.setMaxIdle(4);
+//    dataSource.setMaxWait(10000L);
+//    dataSource.setTestWhileIdle(true);
+//    return dataSource;
+//  }
 
   public static void basicInsert(String database)
   {
@@ -392,7 +398,7 @@ public class ConcurrentTest
       long start = System.currentTimeMillis();
       conn = ds.getConnection();
 
-      String sql = " select * from project a where a.project_id = ?";
+      String sql = "select * from cust_liwx_attr cust_id = ?";
       preparedStatement = conn.prepareStatement(sql);
       preparedStatement.setInt(1, n);
 
@@ -422,18 +428,24 @@ public class ConcurrentTest
     PreparedStatement ps = null;
     try {
       long start = System.currentTimeMillis();
+      TransactionContext.initVisualContext();
       conn = ds.getConnection();
 
-      String sql = " insert into project(project_id,name) values(?,?)";
+      String sql = " insert into cust_liwx_attr(cust_id,attr_name) values(?,?)";
+//      String sql = " insert into project(project_id,name) values(?,?)";
       ps = conn.prepareStatement(sql);
-      ps.setLong(1, n);
-      ps.setString(2, "doubs");
+      ps.setInt(1, n);
+      ps.setString(2, "attr"+n);
       ps.executeUpdate();
+      
       long end = System.currentTimeMillis() - start;
       if (n > 9)
       {
         total.addAndGet(end);
       }
+      
+	TransactionContext.clear();
+	conn.commit();
 
     }
     catch (Exception e)

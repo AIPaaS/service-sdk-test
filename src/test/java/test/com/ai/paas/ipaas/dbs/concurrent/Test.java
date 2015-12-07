@@ -14,7 +14,7 @@ import java.util.concurrent.atomic.AtomicLong;
 
 import javax.sql.DataSource;
 
-import org.apache.commons.dbcp.BasicDataSource;
+//import org.apache.commons.dbcp.BasicDataSource;
 
 import com.ai.paas.ipaas.dbs.distribute.DistributedDataSource;
 import com.ai.paas.ipaas.uac.vo.AuthDescriptor;
@@ -49,7 +49,8 @@ public class Test
 
     final String database = args[3];
 
-    final DataSource dataSource = setupDataSource();
+    final DataSource dataSource = null;
+//    final DataSource dataSource = setupDataSource();
     final AtomicLong total = new AtomicLong();
     runTestCase(ds, 1000000, operator, database, dataSource, total);
     //List<Thread> threadPool = new ArrayList<>();
@@ -261,18 +262,18 @@ public class Test
     }
   }
 
-  public static DataSource setupDataSource() { BasicDataSource dataSource = new BasicDataSource();
-    dataSource.setDriverClassName("com.mysql.jdbc.Driver");
-    dataSource.setUrl("jdbc:mysql://10.1.228.202:31306/devrdb12");
-    dataSource.setUsername("devrdbusr12");
-    dataSource.setPassword("devrdbusr12");
-    dataSource.setInitialSize(200);
-    dataSource.setMaxActive(500);
-    dataSource.setMaxIdle(4);
-    dataSource.setMaxWait(10000L);
-    dataSource.setTestWhileIdle(true);
-    return dataSource;
-  }
+//  public static DataSource setupDataSource() { BasicDataSource dataSource = new BasicDataSource();
+//    dataSource.setDriverClassName("com.mysql.jdbc.Driver");
+//    dataSource.setUrl("jdbc:mysql://10.1.228.202:31306/devrdb12");
+//    dataSource.setUsername("devrdbusr12");
+//    dataSource.setPassword("devrdbusr12");
+//    dataSource.setInitialSize(200);
+//    dataSource.setMaxActive(500);
+//    dataSource.setMaxIdle(4);
+//    dataSource.setMaxWait(10000L);
+//    dataSource.setTestWhileIdle(true);
+//    return dataSource;
+//  }
 
   public static void basicInsert(String database)
   {

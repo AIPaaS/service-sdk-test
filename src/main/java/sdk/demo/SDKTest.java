@@ -8,6 +8,8 @@ import java.io.InputStream;
 import java.net.URISyntaxException;
 import java.util.Properties;
 
+import sdk.demo.util.MessageCustomerTask;
+
 import com.ai.paas.ipaas.ccs.ConfigFactory;
 import com.ai.paas.ipaas.ccs.IConfigClient;
 import com.ai.paas.ipaas.ccs.inner.CCSComponentFactory;
@@ -17,6 +19,9 @@ import com.ai.paas.ipaas.dss.DSSFactory;
 import com.ai.paas.ipaas.dss.interfaces.IDSSClient;
 import com.ai.paas.ipaas.mcs.CacheFactory;
 import com.ai.paas.ipaas.mcs.interfaces.ICacheClient;
+import com.ai.paas.ipaas.search.service.ISearchClient;
+import com.ai.paas.ipaas.search.service.SearchClientFactory;
+import com.ai.paas.ipaas.transaction.dtm.local.message.MessageTest;
 import com.ai.paas.ipaas.uac.vo.AuthDescriptor;
 
 @SuppressWarnings("rawtypes")
@@ -53,6 +58,45 @@ public class SDKTest {
 		
 		System.out.println("testDSS");
 		testDSS();
+		
+		
+		
+		System.out.println("testATS");
+		testATS();
+		
+		System.out.println("testSES");
+		testSES();
+	}
+	private static void testSES() {
+		try {
+			String mcs = mConfig.getProperty("SESPARAM");
+			AuthDescriptor ad = new AuthDescriptor(AUTHURL, mcs.split(",")[0], mcs.split(",")[2],
+					mcs.split(",")[1]);
+			
+			
+			ISearchClient iSearchClient = null;
+				iSearchClient = SearchClientFactory.getSearchClient(ad);
+			iSearchClient.insertData("{\"abc\":\"test\"}");
+//			System.out.println(iSearchClient.);
+			System.out.println("testSES ok");
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
+	private static void testATS() {
+		//MessageCustomerTest
+		try {
+			Thread mcust = new Thread(new MessageCustomerTask());
+			mcust.start();
+			MessageTest mt = new MessageTest();
+			System.out.println("testSES--send message！");
+			mt.testSendMessage();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
 	}
 	private static void testDSS() {
 		try {

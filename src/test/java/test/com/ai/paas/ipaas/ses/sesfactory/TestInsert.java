@@ -16,14 +16,14 @@ public class TestInsert extends Thread {
 
 	
 	private int i ;
-	private static final String AUTH_ADDR = "http://10.1.228.198:14821/iPaas-Auth/service/check";
+	private static final String AUTH_ADDR = "http://10.1.228.198:14821/iPaas-Auth/service/auth";
 	private static AuthDescriptor ad = null;
 	private static ISearchClient is = null;
 	
 	
 	
 	static{
-		ad =  new AuthDescriptor(AUTH_ADDR, "3", "654321","SES001");
+		ad =  new AuthDescriptor(AUTH_ADDR, "B9178FB878834E7BA8CD02FB981C7F4D", "654321","SES001");
 		try {
 			is = SearchClientFactory.getSearchClient(ad);
 		} catch (Exception e) {
