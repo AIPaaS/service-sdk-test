@@ -2,12 +2,15 @@ package com.ai.paas.ipaas.transaction.dtm.local.message;
 
 import org.springframework.stereotype.Component;
 
+import sdk.demo.util.ConfUtil;
+
 import com.ai.paas.ipaas.ats.consumer.ServiceProviderSignature;
 
 @Component
 public class DoMessageSample implements IDoMessage{
+	private String topic = ConfUtil.getProperty("ATSPARAM").split(",")[5];
 	
-	@ServiceProviderSignature(id="signatureId-52928f9a-ba92-4bfc-b370-8f082a4d08e9", idFromAttribute="TOPIC")
+	@ServiceProviderSignature(idFromAttribute="topic")
 	@Override
 	public void doThing(String arg1) {
 		System.out.println("DoMessageSample-------"+arg1);

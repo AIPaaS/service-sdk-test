@@ -91,7 +91,7 @@ public class SDKTest {
 			Thread mcust = new Thread(new MessageCustomerTask());
 			mcust.start();
 			MessageTest mt = new MessageTest();
-			System.out.println("testSES--send message！");
+			System.out.println("testATS--send message！");
 			mt.testSendMessage();
 		} catch (Exception e) {
 			e.printStackTrace();
