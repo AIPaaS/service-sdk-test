@@ -17,7 +17,7 @@ public class DoMessageSample implements IDoMessage{
 		if(arg1!=null)
 			System.out.println("-----ATS  OK----");
 
-		throw new RuntimeException("adfa");
+//		throw new RuntimeException("adfa");
 	}
 
 	
