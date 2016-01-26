@@ -9,6 +9,7 @@ import java.net.URISyntaxException;
 import java.util.Properties;
 
 import sdk.demo.util.MessageCustomerTask;
+import sdk.demo.util.MsgProcessorHandlerImpl;
 
 import com.ai.paas.ipaas.ccs.ConfigFactory;
 import com.ai.paas.ipaas.ccs.IConfigClient;
@@ -19,6 +20,11 @@ import com.ai.paas.ipaas.dss.DSSFactory;
 import com.ai.paas.ipaas.dss.interfaces.IDSSClient;
 import com.ai.paas.ipaas.mcs.CacheFactory;
 import com.ai.paas.ipaas.mcs.interfaces.ICacheClient;
+import com.ai.paas.ipaas.mds.IMessageConsumer;
+import com.ai.paas.ipaas.mds.IMessageSender;
+import com.ai.paas.ipaas.mds.IMsgProcessorHandler;
+import com.ai.paas.ipaas.mds.MsgConsumerFactory;
+import com.ai.paas.ipaas.mds.MsgSenderFactory;
 import com.ai.paas.ipaas.search.service.ISearchClient;
 import com.ai.paas.ipaas.search.service.SearchClientFactory;
 import com.ai.paas.ipaas.transaction.dtm.local.message.MessageTest;
@@ -59,7 +65,8 @@ public class SDKTest {
 		System.out.println("testDSS");
 		testDSS();
 		
-		
+		System.out.println("testMDS");
+		testMDS();
 		
 		System.out.println("testATS");
 		testATS();
@@ -67,6 +74,56 @@ public class SDKTest {
 		System.out.println("testSES");
 		testSES();
 	}
+	
+	
+	private static void testMDS() {
+		try {
+			String mds = mConfig.getProperty("MDSPARAM");
+			AuthDescriptor ad = new AuthDescriptor(AUTHURL, mds.split(",")[0], mds.split(",")[2],
+					mds.split(",")[1]);
+			IMessageSender msgSender = null;
+			msgSender = MsgSenderFactory.getClient(ad, mds.split(",")[3]);
+			msgSender
+			.send("adsajddddddddddsadsadsa"
+					+ "dddddddddddddddddddasdsadsadsadd"
+					+ "ddddddddddddddddddddddddasdsadsadsadsdasdsadddddddddddddddddddddasdsadsadsadsd"
+					+ "dfgfdgggggdgfdgdfgfdgfdgfdgfdgfdgfdgdddddddddddddddddddddasdsadsadsadsd"
+					+ "dfsdfdsferytertertretrretretedddddddddddddddddddddasdsadsadsadsd"
+					+ "fsdfdsfdsfdsfsdfsdfsfsdfsdfsddddddddddddddddddddddasdsadsadsadsd"
+					+ "fdsfsdfsfdsfdsfsdfdsfsdfsdfsddddddddddddddddddddddasdsadsadsadsd"
+					+ "fdsfsfsdfdsfsdtryrtyryryrtyrytrdddddddddddddddddddddasdsadsadsadsd"
+					+ "retetertretretretetretretertertedddddddddddddddddddddasdsadsadsadsd"
+					+ "retertertetretertrefdgdgdfgdddddddddddddddddddddasdsadsadsadsd"
+					+ "dgdfgggggggggggggggggggggfdgdfgdfdddddddddddddddddddddasdsadsadsadsd"
+					+ "gdfggggggggggggggggggggggggggggfhdddddddddddddddddddddasdsadsadsadsd"
+					+ "hgwllllllllllllllllllllllllldddddddddddddddddddddasdsadsadsadsd"
+					+ "asdddddddddddddddddddddddddddddddddddddddddasdsadsadsadsd"
+					+ "kkkkkkkkkkkkkkkkkkkkkdsa", 0);
+			msgSender.send("Byte message01".getBytes(), 1);
+			msgSender.send("Byte message02".getBytes(), 2);
+			msgSender.send("Byte message03".getBytes(), 3);
+			msgSender.send("Byte message04".getBytes(), 4);
+			msgSender.send("Byte message05".getBytes(), 5);
+			msgSender.send("Byte message06".getBytes(), 6);
+			msgSender.send("Byte message07".getBytes(), 7);
+			msgSender.send("Byte message08".getBytes(), 8);
+			msgSender.send("Byte message09".getBytes(), 9);
+			System.out.println("MDS SENDER SUCCESS");
+			
+			IMsgProcessorHandler msgProcessorHandler = new MsgProcessorHandlerImpl();
+			IMessageConsumer msgConsumer = null;
+			msgConsumer = MsgConsumerFactory.getClient(ad, mds.split(",")[3],
+					msgProcessorHandler);
+			msgConsumer.start();
+			System.out.println("MDS COMSUMER TEST SUCCESS");
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
+	
 	private static void testSES() {
 		try {
 			String mcs = mConfig.getProperty("SESPARAM");
