@@ -77,12 +77,17 @@ public class SDKTest {
 	
 	
 	private static void testMDS() {
-		try {
 			String mds = mConfig.getProperty("MDSPARAM");
 			AuthDescriptor ad = new AuthDescriptor(AUTHURL, mds.split(",")[0], mds.split(",")[2],
 					mds.split(",")[1]);
 			IMessageSender msgSender = null;
-			msgSender = MsgSenderFactory.getClient(ad, mds.split(",")[3]);
+			System.out.println("MDS SENDER BEGIN ++++++++++++++++" +mds);
+			try {
+				msgSender = MsgSenderFactory.getClient(ad, mds.split(",")[3]);
+			} catch (Exception e) {
+				System.out.println("MDS COMSUMER ERROR");
+				e.printStackTrace();
+			}
 			msgSender
 			.send("adsajddddddddddsadsadsa"
 					+ "dddddddddddddddddddasdsadsadsadd"
@@ -109,7 +114,7 @@ public class SDKTest {
 			msgSender.send("Byte message08".getBytes(), 8);
 			msgSender.send("Byte message09".getBytes(), 9);
 			System.out.println("MDS SENDER SUCCESS");
-			
+			System.out.println("MDS COMSUMER TEST BEGIN");
 			IMsgProcessorHandler msgProcessorHandler = new MsgProcessorHandlerImpl();
 			IMessageConsumer msgConsumer = null;
 			msgConsumer = MsgConsumerFactory.getClient(ad, mds.split(",")[3],
@@ -117,9 +122,6 @@ public class SDKTest {
 			msgConsumer.start();
 			System.out.println("MDS COMSUMER TEST SUCCESS");
 
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 		
 	}
 	
@@ -164,6 +166,7 @@ public class SDKTest {
 			String id = iDSSClient.save("ok".getBytes(), "test");
 			System.out.println("id:"+id);
 			System.out.println(iDSSClient.read(id));
+			System.out.println(new String(iDSSClient.read(id)));
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 			e.printStackTrace();
