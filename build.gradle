@@ -119,6 +119,7 @@ group = 'com.ai'
 
 dependencies{
 	compile 'com.ai:ipaas-sdk:0.2'
+	compile 'com.ai:ipaas-idps:0.1-SNAPSHOT'
 //	compile 'com.ai:ipaas-ses-full:0.2-SNAPSHOT'
 
 	
@@ -137,7 +138,7 @@ dependencies{
 	testCompile 'poi-examples:poi-examples:3.11-20141221'
 	testCompile 'poi-excelant:poi-excelant:3.11-20141221'
 	testCompile 'reprotng:reportng:1.0'
-	testCompile 'com.ai:ipaas-ses:0.1-SNAPSHOT'
+	testCompile 'com.ai:ipaas-ses:0.2.2-SNAPSHOT'
 	
 	
 	compile "mysql:mysql-connector-java:5.1.34"

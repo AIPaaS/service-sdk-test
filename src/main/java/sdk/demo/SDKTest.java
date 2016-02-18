@@ -1,5 +1,6 @@
 package sdk.demo;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -18,6 +19,8 @@ import com.ai.paas.ipaas.ccs.inner.ICCSComponent;
 import com.ai.paas.ipaas.ccs.inner.constants.ConfigPathMode;
 import com.ai.paas.ipaas.dss.DSSFactory;
 import com.ai.paas.ipaas.dss.interfaces.IDSSClient;
+import com.ai.paas.ipaas.image.IImageClient;
+import com.ai.paas.ipaas.image.ImageClientFactory;
 import com.ai.paas.ipaas.mcs.CacheFactory;
 import com.ai.paas.ipaas.mcs.interfaces.ICacheClient;
 import com.ai.paas.ipaas.mds.IMessageConsumer;
@@ -207,6 +210,29 @@ public class SDKTest {
 				iConfigClient.add("/abc", "ok".getBytes());
 			System.out.println(iConfigClient.get("/abc"));
 		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	private static void testIDPS(){
+		try{
+			String ccs = mConfig.getProperty("IDPSPARAM");
+			AuthDescriptor ad = new AuthDescriptor(AUTHURL, ccs.split(",")[0], ccs.split(",")[2],
+					ccs.split(",")[1]);
+			IImageClient im = ImageClientFactory.getSearchClient(ad);
+			Class config_class = SDKTest.class;
+			InputStream inStream = new FileInputStream(new File(config_class.getResource("/config/test.jpg").toURI()));
+			byte[] buff= new byte[100];
+			ByteArrayOutputStream swapStream = new ByteArrayOutputStream();
+			int rc = 0;  
+	        while ((rc = inStream.read(buff, 0, 100)) > 0) {  
+	            swapStream.write(buff, 0, rc);  
+	        }  
+			String imageId = im.upLoadImage(swapStream.toByteArray(), ".jpg");
+			
+			System.out.println(imageId);
+		}catch (Exception e){
+			
 			e.printStackTrace();
 		}
 	}
