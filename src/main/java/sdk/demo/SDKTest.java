@@ -128,6 +128,15 @@ public class SDKTest {
 			msgConsumer = MsgConsumerFactory.getClient(ad, mds.split(",")[3],
 					msgProcessorHandler);
 			msgConsumer.start();
+			int i=0;
+			while (i<100) {
+				try {
+					Thread.sleep(10000);
+					i++;
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+			}
 			System.out.println("MDS COMSUMER TEST SUCCESS");
 
 		
