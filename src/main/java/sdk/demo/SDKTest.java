@@ -32,6 +32,7 @@ import com.ai.paas.ipaas.search.service.ISearchClient;
 import com.ai.paas.ipaas.search.service.SearchClientFactory;
 import com.ai.paas.ipaas.transaction.dtm.local.message.MessageTest;
 import com.ai.paas.ipaas.uac.vo.AuthDescriptor;
+import com.ai.paas.ipaas.util.StringUtil;
 
 @SuppressWarnings("rawtypes")
 public class SDKTest {
@@ -81,6 +82,10 @@ public class SDKTest {
 	
 	private static void testMDS() {
 			String mds = mConfig.getProperty("MDSPARAM");
+			if(StringUtil.isBlank(mds)) {
+				System.out.println("MDS Not configed, skipped!");
+				return;
+			}
 			AuthDescriptor ad = new AuthDescriptor(AUTHURL, mds.split(",")[0], mds.split(",")[2],
 					mds.split(",")[1]);
 			IMessageSender msgSender = null;
@@ -132,6 +137,10 @@ public class SDKTest {
 	private static void testSES() {
 		try {
 			String mcs = mConfig.getProperty("SESPARAM");
+			if(StringUtil.isBlank(mcs)) {
+				System.out.println("MCS Not configed, skipped!");
+				return;
+			}
 			AuthDescriptor ad = new AuthDescriptor(AUTHURL, mcs.split(",")[0], mcs.split(",")[2],
 					mcs.split(",")[1]);
 			
@@ -150,6 +159,11 @@ public class SDKTest {
 	private static void testATS() {
 		//MessageCustomerTest
 		try {
+			String ats = mConfig.getProperty("ATSPARAM");
+			if(StringUtil.isBlank(ats)) {
+				System.out.println("ATS Not configed, skipped!");
+				return;
+			}
 			Thread mcust = new Thread(new MessageCustomerTask());
 			mcust.start();
 			MessageTest mt = new MessageTest();
@@ -163,6 +177,10 @@ public class SDKTest {
 	private static void testDSS() {
 		try {
 			String dss = mConfig.getProperty("DSSPARAM");
+			if(StringUtil.isBlank(dss)) {
+				System.out.println("DSS Not configed, skipped!");
+				return;
+			}
 			AuthDescriptor ad = new AuthDescriptor(AUTHURL, dss.split(",")[0], dss.split(",")[2],
 					dss.split(",")[1]);
 			IDSSClient iDSSClient = DSSFactory.getClient(ad);
@@ -179,6 +197,10 @@ public class SDKTest {
 	private static void testMCS() {
 		try {
 			String mcs = mConfig.getProperty("MCSPARAM");
+			if(StringUtil.isBlank(mcs)) {
+				System.out.println("MCS Not configed, skipped!");
+				return;
+			}
 			AuthDescriptor ad = new AuthDescriptor(AUTHURL, mcs.split(",")[0], mcs.split(",")[2],
 					mcs.split(",")[1]);
 			ICacheClient iCacheClient = CacheFactory.getClient(ad);
@@ -191,6 +213,10 @@ public class SDKTest {
 	private static void testCCSIN() {
 		try {
 			String ccs = mConfig.getProperty("CCSPARAM_INNER");
+			if(StringUtil.isBlank(ccs)) {
+				System.out.println("CCS IN Not configed, skipped!");
+				return;
+			}
 			ICCSComponent iCCSComponent = CCSComponentFactory.getConfigClient(ccs.split(",")[0], ccs.split(",")[1], ccs.split(",")[2]);
 			if(!iCCSComponent.exists("/abc",ConfigPathMode.WRITABLE))
 				iCCSComponent.add("/abc", "ok".getBytes());
@@ -203,6 +229,10 @@ public class SDKTest {
 	private static void testCCS() {
 		try {
 			String ccs = mConfig.getProperty("CCSPARAM");
+			if(StringUtil.isBlank(ccs)) {
+				System.out.println("CCS  Not configed, skipped!");
+				return;
+			}
 			AuthDescriptor ad = new AuthDescriptor(AUTHURL, ccs.split(",")[0], ccs.split(",")[2],
 					ccs.split(",")[1]);
 			IConfigClient iConfigClient = ConfigFactory.getConfigClient(ad);
@@ -217,6 +247,10 @@ public class SDKTest {
 	private static void testIDPS(){
 		try{
 			String ccs = mConfig.getProperty("IDPSPARAM");
+			if(StringUtil.isBlank(ccs)) {
+				System.out.println("IDPS  Not configed, skipped!");
+				return;
+			}
 			AuthDescriptor ad = new AuthDescriptor(AUTHURL, ccs.split(",")[0], ccs.split(",")[2],
 					ccs.split(",")[1]);
 			IImageClient im = ImageClientFactory.getSearchClient(ad);

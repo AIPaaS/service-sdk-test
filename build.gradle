@@ -151,7 +151,7 @@ dependencies{
 	compile("org.springframework:spring-dao:2.0.8") {
 		exclude module: "spring-context", group: "org.springframework"
 	}
-	
+	compile "com.beust:jcommander:1.30"
 	
 	
 }
